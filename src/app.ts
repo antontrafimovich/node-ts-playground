@@ -1,10 +1,10 @@
-import express from "express";
-import * as path from "path";
 import cookieParser from "cookie-parser";
+import express from "express";
 import morgan from "morgan";
+import path from "path";
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+import { ExcelDataBase } from "./db";
+import { useBaseRoutes, usePaymentsRoutes } from "./routes";
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+useBaseRoutes(app);
+usePaymentsRoutes(app, new ExcelDataBase());
 
 export { app };
