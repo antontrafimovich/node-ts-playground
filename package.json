@@ -20,7 +20,8 @@
     "morgan": "~1.9.1"
   },
   "bin": {
-    "create-map": "./dist/bin/create-map.js"
+    "create-map": "./dist/bin/create-map.js",
+    "create-report": "./dist/bin/create-report.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",

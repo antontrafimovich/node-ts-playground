@@ -41,7 +41,7 @@ const main = async () => {
     return result[1];
   });
 
-  const csv = await convertToCsvString(["Address\n", ...addressesList]);
+  const csv = await convertToCsvString(["Address", ...addressesList]);
 
   fs.writeFile(
     path.resolve(process.cwd(), "./src/public/map.csv"),

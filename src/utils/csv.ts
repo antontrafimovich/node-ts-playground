@@ -1,15 +1,12 @@
 import { stringify } from "csv-stringify";
 import fs from "fs";
-import path from "path";
 import csv from "csv-parser";
 
 const convertToCsvString = (values: unknown[]): Promise<string> => {
   return new Promise((res, rej) => {
-    const data: string[] = ["Address\n"];
+    const data: string[] = [];
 
-    const stringifier = stringify({
-      delimiter: ":",
-    });
+    const stringifier = stringify();
 
     stringifier.on("readable", function () {
       let row;
@@ -26,16 +23,14 @@ const convertToCsvString = (values: unknown[]): Promise<string> => {
       res(data.join(""));
     });
 
-    values.forEach((v) => stringifier.write([v]));
+    values.forEach((v) => stringifier.write(v));
 
     stringifier.end();
   });
 };
 
-const getDataFromCsv = (
-  srcPath: string
-): Promise<(object & { Address: string })[]> => {
-  const results: (object & { Address: string })[] = [];
+const getDataFromCsv = <T>(srcPath: string): Promise<T[]> => {
+  const results: T[] = [];
 
   return new Promise((resolve) => {
     fs.createReadStream(srcPath)
