@@ -10,5 +10,6 @@
     ],
     "@babel/preset-typescript"
   ],
+  "sourceMaps": "inline",
   "ignore": ["/node_modules/"]
 }

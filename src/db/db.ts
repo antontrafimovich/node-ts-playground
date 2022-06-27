@@ -1,5 +1,5 @@
 abstract class DataBase {
-  abstract getData(): Promise<unknown>;
+  abstract getData(): Promise<string[]>;
 }
 
 export { DataBase };
